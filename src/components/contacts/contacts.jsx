@@ -1,8 +1,8 @@
 import { Component } from "react";
 import { nanoid } from "nanoid";
-import Filter from "./filter";
-import ContactForm from "./form";
-import ContactList from "./list";
+import Filter from "../filter/filter";
+import ContactForm from "../form/form";
+import ContactList from "../list/list";
 
 export default class ContactsApp extends Component {
   state = {
@@ -11,7 +11,6 @@ export default class ContactsApp extends Component {
   };
 
   componentDidMount() {
-    // Load contacts from localStorage when the component mounts
     const storedContacts = localStorage.getItem("contacts");
     if (storedContacts) {
       this.setState({ contacts: JSON.parse(storedContacts) });
@@ -19,8 +18,9 @@ export default class ContactsApp extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    // Save contacts to localStorage when the component updates
-    if (prevState.contacts !== this.state.contacts) {
+    if (
+      JSON.stringify(prevState.contacts) !== JSON.stringify(this.state.contacts)
+    ) {
       localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
     }
   }
