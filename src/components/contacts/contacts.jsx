@@ -48,7 +48,7 @@ export default class ContactsApp extends Component {
     this.setState((prevState) => ({
       contacts: prevState.contacts.filter(
         (contact) => JSON.stringify(contact.id) !== JSON.stringify(contactId)
-      
+      ),
     }));
   };
 
